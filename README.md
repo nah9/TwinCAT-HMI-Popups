@@ -17,46 +17,45 @@ See releases for NuGet package!
 ![03_UsercontrolParameters](https://user-images.githubusercontent.com/74287696/154477299-e1bec8e9-c9ed-47fa-a8d8-ef3eac16b8c2.JPG)
 
 5. See the result
-
 ![04_Action](https://user-images.githubusercontent.com/74287696/154477309-a63030ba-0eaf-4344-aef4-de58860f31af.JPG)
 
 
 ## Parameters
 
-Parameters ()
+Parameters (TcHmi.Functions.Popups.PopupParameters)
 : The object containing all the parameters for the call
 
-Bindings
+Bindings (TcHmi.Functions.Popups.BindingItemList)
 : List of all the bindings to a usercontrol popup.
 *Bindings will be dismissed if content file is used.*
 
-Bindings.Parameter
+Bindings.Parameter (String)
 : Property name OR Attribute name of the usercontrols parameter.
 *Property name is named "Name" if "Details" mode is not active.*
 *Attribute Name can be seen also when "Details" mode is active.*
 
-Bindings.ParameterMode
+Bindings.ParameterMode (TcHmi.Functions.Popups.UsercontrolBindingMode)
 : The flavor of the Parameter name.
 
-Bindings.Symbol
+Bindings.Symbol (String)
 : The symbol to be bound on the usercontrol.
 *Parameter symbols (%pp%) will be resolved before being used for the binding.*
 
-ContentFace
+ContentFace (Path)
 : Usercontrol of Content to be shown in the popup.
 
-Destination
+Destination (String)
 : Where the popup should be added.
 *Typically views work best on this but is not limited to views.*
 
-Draggable
+Draggable (Boolean)
 : Should the popup be draggable.
 
-InsertWherePressed
+InsertWherePressed (Boolean)
 : Should the popup be inserted where the user last pressed
 *The package listens all keypresses on the HMI View and save them to a global scope variable **ClickPressCoordinates**.*
 *The positioning will be made with Left and Top properties.*
 
-Positioning
+Positioning (TcHmi.Functions.Popups.PositioningOptions)
 : The positioning data for the popup. Is used like in typical controls.
 *Take care of left and top when using with InsertWherePressed.*
