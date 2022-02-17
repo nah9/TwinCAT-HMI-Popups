@@ -42,7 +42,7 @@ Bindings.Symbol (String)
 *Parameter symbols (%pp%) will be resolved before being used for the binding.*
 
 ContentFace (Path)
-: Usercontrol of Content to be shown in the popup.
+: Usercontrol or Content to be shown in the popup.
 
 Destination (String)
 : Where the popup should be added.
