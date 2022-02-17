@@ -1,0 +1,98 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "definitions": {
+    "TcHmi.Functions.Popups.PositioningOptions": {
+      "properties": {
+        "Bottom": {
+          "type": "string"
+        },
+        "BottomUnit": {
+          "$ref": "tchmi:framework#/definitions/MeasurementUnit"
+        },
+        "Height": {
+          "type": "string"
+        },
+        "HeightUnit": {
+          "$ref": "tchmi:framework#/definitions/MeasurementUnit"
+        },
+        "Left": {
+          "type": "string"
+        },
+        "LeftUnit": {
+          "$ref": "tchmi:framework#/definitions/MeasurementUnit"
+        },
+        "Right": {
+          "type": "string"
+        },
+        "RightUnit": {
+          "$ref": "tchmi:framework#/definitions/MeasurementUnit"
+        },
+        "Top": {
+          "type": "string"
+        },
+        "TopUnit": {
+          "$ref": "tchmi:framework#/definitions/MeasurementUnit"
+        },
+        "Width": {
+          "type": "string"
+        }
+      },
+      "type": "object",
+      "id": "tchmi:framework#/definitions/TcHmi.Functions.Popups.PositioningOptions"
+    },
+    "TcHmi.Functions.Popups.UsercontrolBindingMode": {
+      "type": "string",
+      "enum": [
+        "ParameterName",
+        "ParameterAttribute"
+      ],
+      "id": "tchmi:framework#/definitions/TcHmi.Functions.Popups.UsercontrolBindingMode"
+    },
+    "TcHmi.Functions.Popups.BindingItemList": {
+      "items": {
+        "type": "object",
+        "properties": {
+          "Parameter": {
+            "type": "string"
+          },
+          "ParameterMode": {
+            "$ref": "tchmi:framework#/definitions/TcHmi.Functions.Popups.UsercontrolBindingMode"
+          },
+          "Symbol": {
+            "$ref": "tchmi:general#/definitions/String"
+          }
+        }
+      },
+      "type": "array",
+      "minItems": 0,
+      "id": "tchmi:framework#/definitions/TcHmi.Functions.Popups.BindingItemList"
+    },
+    "TcHmi.Functions.Popups.PopupParameters": {
+      "properties": {
+        "Bindings": {
+          "$ref": "tchmi:framework#/definitions/TcHmi.Functions.Popups.BindingItemList"
+        },
+        "ContentFace": {
+          "$ref": "tchmi:framework#/definitions/Path"
+        },
+        "Destination": {
+          "type": "string"
+        },
+        "Draggable": {
+          "$ref": "tchmi:general#/definitions/Boolean"
+        },
+        "InsertWherePressed": {
+          "$ref": "tchmi:general#/definitions/Boolean"
+        },
+        "Positioning": {
+          "$ref": "tchmi:framework#/definitions/TcHmi.Functions.Popups.PositioningOptions"
+        }
+      },
+      "type": "object",
+      "required": [
+        "Bindings"
+      ],
+      "id": "tchmi:framework#/definitions/TcHmi.Functions.Popups.PopupParameters"
+    }
+  }
+}
