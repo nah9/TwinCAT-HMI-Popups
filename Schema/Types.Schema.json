@@ -35,6 +35,9 @@
         },
         "Width": {
           "type": "string"
+        },
+        "WidthUnit": {
+          "$ref": "tchmi:framework#/definitions/MeasurementUnit"
         }
       },
       "type": "object",
