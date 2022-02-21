@@ -38,8 +38,28 @@
         },
         "WidthUnit": {
           "$ref": "tchmi:framework#/definitions/MeasurementUnit"
+        },
+        "WidthMode": {
+          "$ref": "tchmi:framework#/definitions/SizeModeWithContent"
+        },
+        "HeightMode": {
+          "$ref": "tchmi:framework#/definitions/SizeModeWithContent"
         }
       },
+      "propertiesMeta": [
+        {
+          "name": "WidthMode",
+          "displayName": "WidthMode",
+          "category": "Modes",
+          "displayPriority": 10
+        },
+        {
+          "name": "HeightMode",
+          "displayName": "HeightMode",
+          "category": "Modes",
+          "displayPriority": 10
+        }
+      ],
       "type": "object",
       "id": "tchmi:framework#/definitions/TcHmi.Functions.Popups.PositioningOptions"
     },
@@ -50,6 +70,16 @@
         "ParameterAttribute"
       ],
       "id": "tchmi:framework#/definitions/TcHmi.Functions.Popups.UsercontrolBindingMode"
+    },
+    "TcHmi.Functions.Popups.DraggingBehaviour": {
+      "type": "string",
+      "enum": [
+        "None",
+        "Anywhere",
+        "Header",
+        "Body"
+      ],
+      "id": "tchmi:framework#/definitions/TcHmi.Functions.Popups.DraggingBehaviour"
     },
     "TcHmi.Functions.Popups.BindingItemList": {
       "items": {
@@ -81,10 +111,13 @@
         "Destination": {
           "type": "string"
         },
-        "Draggable": {
-          "$ref": "tchmi:general#/definitions/Boolean"
+        "Dragging": {
+          "$ref": "tchmi:framework#/definitions/TcHmi.Functions.Popups.DraggingBehaviour"
         },
         "InsertWherePressed": {
+          "$ref": "tchmi:general#/definitions/Boolean"
+        },
+        "Modal": {
           "$ref": "tchmi:general#/definitions/Boolean"
         },
         "Positioning": {

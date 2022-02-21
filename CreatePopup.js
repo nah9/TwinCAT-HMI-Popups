@@ -58,6 +58,8 @@
                 popupParameters['data-tchmi-bottom-unit'] = Parameters.Positioning.BottomUnit;
                 popupParameters['data-tchmi-width-unit'] = Parameters.Positioning.WidthUnit;
                 popupParameters['data-tchmi-height-unit'] = Parameters.Positioning.HeightUnit;
+                popupParameters['data-tchmi-width-mode'] = Parameters.Positioning.WidthMode;
+                popupParameters['data-tchmi-height-mode'] = Parameters.Positioning.HeightMode;
 
                 // Use the last known keypress to determine where to add
                 if (Parameters.InsertWherePressed == true) {
@@ -122,9 +124,43 @@
                     return;
                 }
                 if (popup) {
+                    if (Parameters.Modal) {
+                        var TopMostLayerUuid = String("TopMostLayer_" + tchmi_create_guid());
+                        var TopMostLayerParameters = {};
+                        TopMostLayerParameters['data-tchmi-left'] = 0;
+                        TopMostLayerParameters['data-tchmi-top'] = 0;
+                        TopMostLayerParameters['data-tchmi-right'] = 0;
+                        TopMostLayerParameters['data-tchmi-bottom'] = 0;
+                        TopMostLayerParameters['data-tchmi-background-color'] = {
+                            "color": "rgba(0, 0, 0, 0.33)"
+                        };
+                        
+                        var TopMostLayer = TcHmi.ControlFactory.createEx(
+                            'tchmi-container',
+                            TopMostLayerUuid,
+                            TopMostLayerParameters
+                        );
+                        view.addChild(TopMostLayer, null);
+                        view = TopMostLayer;
+
+                        TopMostLayerElement = TopMostLayer.getElement()[0];
+                        TopMostLayerElement.addEventListener('mousedown', function (e) {
+                            if (e.target.parentElement.id.search(/TopMostLayer_/i) > -1) {
+                                popup.destroy();
+                                TopMostLayer.destroy();
+                            }
+                        }, true);
+                        TopMostLayerElement.addEventListener('touchstart', function (e) {
+                            if (e.target.parentElement.id.search(/TopMostLayer_/i) > -1) {
+                                popup.destroy();
+                                TopMostLayer.destroy();
+                            }
+                        }, true);
+                    }
+
                     view.addChild(popup, null);
-                    if (Parameters.Draggable) {
-                        TcHmi.Functions.getFunction('TcHmi.Functions.Popups.MakeDraggable')(popup);
+                    if (Parameters.Dragging != 'None') {
+                        TcHmi.Functions.getFunction('TcHmi.Functions.Popups.MakeDraggable')(popup, Parameters.Dragging);
                     }
                 } else {
                     TcHmi.Log.error('Popup creation failed.');

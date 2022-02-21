@@ -23,6 +23,18 @@
         "restParameter": false,
         "asReference": false,
         "allowControlAttributeBindingOptions": false
+      },
+      {
+        "name": "DragFrom",
+        "displayName": "DragFrom",
+        "type": "tchmi:framework#/definitions/TcHmi.Functions.Popups.DraggingBehaviour",
+        "description": "Where should the popup be draggable from",
+        "defaultValue": "Anywhere",
+        "required": true,
+        "bindable": true,
+        "restParameter": false,
+        "asReference": false,
+        "allowControlAttributeBindingOptions": false
       }
     ]
   },
