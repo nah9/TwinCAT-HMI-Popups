@@ -74,6 +74,9 @@ Positioning (TcHmi.Functions.Popups.PositioningOptions)
 
 ## Version history
 
+### 1.1.1
+- Bugfix: User was able to only move newest popup.
+- Bugfix: Modal background did not disappear when popup was closed.
 ### 1.1.0
 - Modal popup.
 - Definable dragging areas on the popup.

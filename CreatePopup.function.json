@@ -49,11 +49,11 @@
   "$schema": "./../Packages/Beckhoff.TwinCAT.HMI.Framework.12.752.0/runtimes/native1.12-tchmi/Schema/FunctionDescription.Schema.json",
   "apiVersion": 1,
   "version": {
-    "full": "1.1.0.0",
+    "full": "1.1.1.0",
     "major": 1,
     "minor": 1,
     "revision": 0,
-    "build": 0
+    "build": 1
   },
   "dependencyFiles": [
     {

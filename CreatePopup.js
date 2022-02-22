@@ -125,7 +125,7 @@
                 }
                 if (popup) {
                     if (Parameters.Modal) {
-                        var TopMostLayerUuid = String("TopMostLayer_" + tchmi_create_guid());
+                        var TopMostLayerUuid = String("PopUpTopMostLayer");
                         var TopMostLayerParameters = {};
                         TopMostLayerParameters['data-tchmi-left'] = 0;
                         TopMostLayerParameters['data-tchmi-top'] = 0;

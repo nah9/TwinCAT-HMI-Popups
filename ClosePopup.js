@@ -11,6 +11,11 @@
                 } else if (Control.getType().indexOf('Content') > -1) {
                     Control.getParent().destroy();
                 }
+
+                var PopUpTopMostLayer = TcHmi.Controls.get('PopUpTopMostLayer');
+                if (PopUpTopMostLayer) {
+                    PopUpTopMostLayer.destroy();
+                }
             }
             Popups.ClosePopup = ClosePopup;
         })(Popups = Functions.Popups || (Functions.Popups = {}));

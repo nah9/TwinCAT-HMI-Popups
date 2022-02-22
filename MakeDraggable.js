@@ -7,7 +7,7 @@
         (function (Popups) {
             function MakeDraggable(Control, DragFrom) {
 
-                elmnt = document.getElementById(Control.getId());
+                var elmnt = document.getElementById(Control.getId());
                     
                 var pos1, pos2, pos3, pos4 = 0;
 
