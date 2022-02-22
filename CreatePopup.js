@@ -68,7 +68,7 @@
                 }
 
                 // Make the popup quite top
-                popupParameters['data-tchmi-zindex'] = "1000";
+                popupParameters['data-tchmi-zindex'] = "10000";
 
                 if (popupType == "usercontrol") {
                     popupParameters['data-tchmi-target-user-control'] = Parameters.ContentFace;
@@ -118,13 +118,16 @@
                     }
                 }
 
+                // Select the view from parameters
                 var view = TcHmi.Controls.get(Parameters.Destination.replace("%ctrl%", "").replace("%/ctrl%", ""));
                 if (!view) {
                     TcHmi.Log.error('Please use a proper destination.');
                     return;
                 }
+                // Check that popup was created succesfully
                 if (popup) {
                     if (Parameters.Modal) {
+                        // If user wants the popup to be modal, create the hiding plane
                         var TopMostLayerUuid = String("PopUpTopMostLayer");
                         var TopMostLayerParameters = {};
                         TopMostLayerParameters['data-tchmi-left'] = 0;
@@ -134,7 +137,11 @@
                         TopMostLayerParameters['data-tchmi-background-color'] = {
                             "color": "rgba(0, 0, 0, 0.33)"
                         };
-                        
+                        // TopMostLayer higher than normal popup
+                        TopMostLayerParameters['data-tchmi-zindex'] = "10100";
+                        // Modal popup higher than hiding plane
+                        popup.setZindex(10110);
+
                         var TopMostLayer = TcHmi.ControlFactory.createEx(
                             'tchmi-container',
                             TopMostLayerUuid,
@@ -143,19 +150,19 @@
                         view.addChild(TopMostLayer, null);
                         view = TopMostLayer;
 
-                        TopMostLayerElement = TopMostLayer.getElement()[0];
-                        TopMostLayerElement.addEventListener('mousedown', function (e) {
-                            if (e.target.parentElement.id.search(/TopMostLayer_/i) > -1) {
-                                popup.destroy();
-                                TopMostLayer.destroy();
-                            }
-                        }, true);
-                        TopMostLayerElement.addEventListener('touchstart', function (e) {
-                            if (e.target.parentElement.id.search(/TopMostLayer_/i) > -1) {
-                                popup.destroy();
-                                TopMostLayer.destroy();
-                            }
-                        }, true);
+                        //TopMostLayerElement = TopMostLayer.getElement()[0];
+                        //TopMostLayerElement.addEventListener('mousedown', function (e) {
+                        //    if (e.target.parentElement.id.search(/TopMostLayer_/i) > -1) {
+                        //        popup.destroy();
+                        //        TopMostLayer.destroy();
+                        //    }
+                        //}, true);
+                        //TopMostLayerElement.addEventListener('touchstart', function (e) {
+                        //    if (e.target.parentElement.id.search(/TopMostLayer_/i) > -1) {
+                        //        popup.destroy();
+                        //        TopMostLayer.destroy();
+                        //    }
+                        //}, true);
                     }
 
                     view.addChild(popup, null);

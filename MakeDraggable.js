@@ -75,7 +75,7 @@
                     document.ontouchend = closeTouchDragElement;
                     document.ontouchmove = elementTouchDrag;
                 }
-                function dragTouchHeader(e) {
+                function dragTouchStartHeader(e) {
                     e = e || window.event;
                     //e.preventDefault();
                     pos3 = e.touches[0].clientX;
