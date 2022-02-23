@@ -9,7 +9,7 @@
 
                 var elmnt = document.getElementById(Control.getId());
                     
-                var pos1, pos2, pos3, pos4 = 0;
+                var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
 
                 switch (DragFrom) {
                     case "Anywhere":
@@ -70,6 +70,9 @@
                 function dragTouchStartBody(e) {
                     e = e || window.event;
                     //e.preventDefault();
+                    if (!e.target.classList.contains('tchmi-partial-template')) {
+                        return;
+                    }
                     pos3 = e.touches[0].clientX;
                     pos4 = e.touches[0].clientY;
                     document.ontouchend = closeTouchDragElement;
@@ -78,6 +81,9 @@
                 function dragTouchStartHeader(e) {
                     e = e || window.event;
                     //e.preventDefault();
+                    if (!(e.target.parentElement.id.search(/header/i) > -1 || e.target.id.search(/header/i) > -1 || e.target.parentElement.parentElement.id.search(/header/i) > -1)) {
+                        return;
+                    }
                     pos3 = e.touches[0].clientX;
                     pos4 = e.touches[0].clientY;
                     document.ontouchend = closeTouchDragElement;
@@ -87,8 +93,18 @@
                     e = e || window.event;
                     //e.preventDefault();
                     // calculate the new cursor position:
-                    pos1 = pos3 - e.clientX;
-                    pos2 = pos4 - e.clientY;
+                    var newPosX = e.clientX;
+                    var newPosY = e.clientY;
+                    var boundingRectangleX = elmnt.parentElement.parentElement.getBoundingClientRect().width;
+                    var boundingRectangleY = elmnt.parentElement.parentElement.getBoundingClientRect().height;
+                    if (newPosX > boundingRectangleX || newPosX < 0) {
+                        return;
+                    }
+                    if (newPosY > boundingRectangleY || newPosY < 0) {
+                        return;
+                    }
+                    pos1 = pos3 - newPosX;
+                    pos2 = pos4 - newPosY;
                     pos3 = e.clientX;
                     pos4 = e.clientY;
                     // set the element's new position:
@@ -98,8 +114,18 @@
                 function elementTouchDrag(e) {
                     e = e || window.event;
                     //e.preventDefault();
-                    pos1 = pos3 - e.touches[0].clientX;
-                    pos2 = pos4 - e.touches[0].clientY;
+                    var newPosX = e.touches[0].clientX;
+                    var newPosY = e.touches[0].clientY;
+                    var boundingRectangleX = elmnt.parentElement.parentElement.getBoundingClientRect().width;
+                    var boundingRectangleY = elmnt.parentElement.parentElement.getBoundingClientRect().height;
+                    if (newPosX > boundingRectangleX || newPosX < 0) {
+                        return;
+                    }
+                    if (newPosY > boundingRectangleY || newPosY < 0) {
+                        return;
+                    }
+                    pos1 = pos3 - newPosX;
+                    pos2 = pos4 - newPosY;
                     pos3 = e.touches[0].clientX;
                     pos4 = e.touches[0].clientY;
                     elmnt.style.top = (elmnt.offsetTop - pos2) + "px";

@@ -73,7 +73,9 @@ Positioning (TcHmi.Functions.Popups.PositioningOptions)
 - *Take care of left and top when using with InsertWherePressed.*
 
 ## Version history
-
+### 1.1.3
+- Dragging the popup outside the area it lives is prohibted.
+- Bugfix: Header and body dragging did not work properly with touch.
 ### 1.1.2
 - Bugfix: Modal popup was not always the topmost popup.
 - Bugfix: Header draggable popup threw unnecessary error.
