@@ -73,6 +73,8 @@ Positioning (TcHmi.Functions.Popups.PositioningOptions)
 - *Take care of left and top when using with InsertWherePressed.*
 
 ## Version history
+### 1.1.4
+- Bugfix: Dragging on PC based touch devices fixed.
 ### 1.1.3
 - Dragging the popup outside the area it lives is prohibted.
 - Bugfix: Header and body dragging did not work properly with touch.

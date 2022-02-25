@@ -10,6 +10,7 @@
                 var elmnt = document.getElementById(Control.getId());
                     
                 var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+                var touch
 
                 switch (DragFrom) {
                     case "Anywhere":
@@ -29,13 +30,18 @@
                         elmnt.addEventListener('touchstart', dragTouchStart, false);
                 } 
 
-                function dragMouseDown(e) {
+                 //*********************
+                //
+                //   Mouse Events
+                //
+                //*********************
+               function dragMouseDown(e) {
                     e = e || window.event;
                     e.preventDefault();
                     pos3 = e.clientX;
                     pos4 = e.clientY;
-                    document.onmouseup = closeDragElement;
-                    document.onmousemove = elementDrag;
+                    elmnt.addEventListener('mouseup', closeDragElement, false);
+                    elmnt.addEventListener('mousemove', elementDrag, false);
                 }
                 function dragMouseDownBody(e) {
                     e = e || window.event;
@@ -45,8 +51,8 @@
                     }
                     pos3 = e.clientX;
                     pos4 = e.clientY;
-                    document.onmouseup = closeDragElement;
-                    document.onmousemove = elementDrag;
+                    elmnt.addEventListener('mouseup', closeDragElement, false);
+                    elmnt.addEventListener('mousemove', elementDrag, false);
                 }
                 function dragMouseDownHeader(e) {
                     e = e || window.event;
@@ -56,38 +62,8 @@
                     }
                     pos3 = e.clientX;
                     pos4 = e.clientY;
-                    document.onmouseup = closeDragElement;
-                    document.onmousemove = elementDrag;
-                }
-                function dragTouchStart(e) {
-                    e = e || window.event;
-                    //e.preventDefault();
-                    pos3 = e.touches[0].clientX;
-                    pos4 = e.touches[0].clientY;
-                    document.ontouchend = closeTouchDragElement;
-                    document.ontouchmove = elementTouchDrag;
-                }
-                function dragTouchStartBody(e) {
-                    e = e || window.event;
-                    //e.preventDefault();
-                    if (!e.target.classList.contains('tchmi-partial-template')) {
-                        return;
-                    }
-                    pos3 = e.touches[0].clientX;
-                    pos4 = e.touches[0].clientY;
-                    document.ontouchend = closeTouchDragElement;
-                    document.ontouchmove = elementTouchDrag;
-                }
-                function dragTouchStartHeader(e) {
-                    e = e || window.event;
-                    //e.preventDefault();
-                    if (!(e.target.parentElement.id.search(/header/i) > -1 || e.target.id.search(/header/i) > -1 || e.target.parentElement.parentElement.id.search(/header/i) > -1)) {
-                        return;
-                    }
-                    pos3 = e.touches[0].clientX;
-                    pos4 = e.touches[0].clientY;
-                    document.ontouchend = closeTouchDragElement;
-                    document.ontouchmove = elementTouchDrag;
+                    elmnt.addEventListener('mouseup', closeDragElement, false);
+                    elmnt.addEventListener('mousemove', elementDrag, false);
                 }
                 function elementDrag(e) {
                     e = e || window.event;
@@ -111,6 +87,47 @@
                     elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
                     elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
                 }
+                function closeDragElement() {
+                    // stop moving when mouse button is released:
+                    elmnt.removeEventListener('mouseup', closeDragElement);
+                    elmnt.removeEventListener('mousemove', elementDrag);
+                }
+
+                //*********************
+                //
+                //   Touch Events
+                //
+                //*********************
+                function dragTouchStart(e) {
+                    e = e || window.event;
+                    //e.preventDefault();
+                    pos3 = e.touches[0].clientX;
+                    pos4 = e.touches[0].clientY;
+                    elmnt.addEventListener('touchend', closeTouchDragElement, false);
+                    elmnt.addEventListener('touchmove', elementTouchDrag, false);
+                }
+                function dragTouchStartBody(e) {
+                    e = e || window.event;
+                    //e.preventDefault();
+                    if (!e.target.classList.contains('tchmi-partial-template')) {
+                        return;
+                    }
+                    pos3 = e.touches[0].clientX;
+                    pos4 = e.touches[0].clientY;
+                    elmnt.addEventListener('touchend', closeTouchDragElement, false);
+                    elmnt.addEventListener('touchmove', elementTouchDrag, false);
+                }
+                function dragTouchStartHeader(e) {
+                    e = e || window.event;
+                    //e.preventDefault();
+                    if (!(e.target.parentElement.id.search(/header/i) > -1 || e.target.id.search(/header/i) > -1 || e.target.parentElement.parentElement.id.search(/header/i) > -1)) {
+                        return;
+                    }
+                    pos3 = e.touches[0].clientX;
+                    pos4 = e.touches[0].clientY;
+                    elmnt.addEventListener('touchend', closeTouchDragElement, false);
+                    elmnt.addEventListener('touchmove', elementTouchDrag, false);
+                }
                 function elementTouchDrag(e) {
                     e = e || window.event;
                     //e.preventDefault();
@@ -131,14 +148,9 @@
                     elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
                     elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
                 }
-                function closeDragElement() {
-                    // stop moving when mouse button is released:
-                    document.onmouseup = null;
-                    document.onmousemove = null;
-                }
                 function closeTouchDragElement() {
-                    document.ontouchend = null;
-                    document.ontouchmove = null;
+                    elmnt.removeEventListener('touchend', closeTouchDragElement);
+                    elmnt.removeEventListener('touchmove', elementTouchDrag);
                 }
 
             }
