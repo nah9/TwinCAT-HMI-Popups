@@ -39,9 +39,9 @@
                     e = e || window.event;
                     e.preventDefault();
                     pos3 = e.clientX;
-                    pos4 = e.clientY;
-                    elmnt.addEventListener('mouseup', closeDragElement, false);
-                    elmnt.addEventListener('mousemove', elementDrag, false);
+                   pos4 = e.clientY;
+                   document.addEventListener('mouseup', closeDragElement, false);
+                   document.addEventListener('mousemove', elementDrag, false);
                 }
                 function dragMouseDownBody(e) {
                     e = e || window.event;
@@ -51,8 +51,8 @@
                     }
                     pos3 = e.clientX;
                     pos4 = e.clientY;
-                    elmnt.addEventListener('mouseup', closeDragElement, false);
-                    elmnt.addEventListener('mousemove', elementDrag, false);
+                    document.addEventListener('mouseup', closeDragElement, false);
+                    document.addEventListener('mousemove', elementDrag, false);
                 }
                 function dragMouseDownHeader(e) {
                     e = e || window.event;
@@ -62,12 +62,12 @@
                     }
                     pos3 = e.clientX;
                     pos4 = e.clientY;
-                    elmnt.addEventListener('mouseup', closeDragElement, false);
-                    elmnt.addEventListener('mousemove', elementDrag, false);
+                    document.addEventListener('mouseup', closeDragElement, false);
+                    document.addEventListener('mousemove', elementDrag, false);
                 }
                 function elementDrag(e) {
                     e = e || window.event;
-                    //e.preventDefault();
+                    e.preventDefault();
                     // calculate the new cursor position:
                     var newPosX = e.clientX;
                     var newPosY = e.clientY;
@@ -89,8 +89,8 @@
                 }
                 function closeDragElement() {
                     // stop moving when mouse button is released:
-                    elmnt.removeEventListener('mouseup', closeDragElement);
-                    elmnt.removeEventListener('mousemove', elementDrag);
+                    document.removeEventListener('mouseup', closeDragElement);
+                    document.removeEventListener('mousemove', elementDrag);
                 }
 
                 //*********************

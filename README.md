@@ -73,6 +73,8 @@ Positioning (TcHmi.Functions.Popups.PositioningOptions)
 - *Take care of left and top when using with InsertWherePressed.*
 
 ## Version history
+### 1.1.5
+- Bugfix: Dragging could be stopped by dragging too quickly.
 ### 1.1.4
 - Bugfix: Dragging on PC based touch devices fixed.
 ### 1.1.3
