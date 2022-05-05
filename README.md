@@ -73,6 +73,10 @@ Positioning (TcHmi.Functions.Popups.PositioningOptions)
 - *Take care of left and top when using with InsertWherePressed.*
 
 ## Version history
+
+### 1.1.6
+- Bugfix: In TwinCAT HMI 1.12.754.x textboxes inside popups did not work.
+- Updated Beckhoff.TwinCAT.HMI.Framework version required to 12.754.4 
 ### 1.1.5
 - Bugfix: Dragging could be stopped by dragging too quickly.
 ### 1.1.4

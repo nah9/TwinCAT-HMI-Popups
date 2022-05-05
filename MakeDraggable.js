@@ -37,7 +37,7 @@
                 //*********************
                function dragMouseDown(e) {
                     e = e || window.event;
-                    e.preventDefault();
+                    //e.preventDefault();
                     pos3 = e.clientX;
                    pos4 = e.clientY;
                    document.addEventListener('mouseup', closeDragElement, false);
@@ -45,7 +45,7 @@
                 }
                 function dragMouseDownBody(e) {
                     e = e || window.event;
-                    e.preventDefault();
+                    //e.preventDefault();
                     if (!e.target.classList.contains('tchmi-partial-template')) {
                         return;
                     }
@@ -56,9 +56,10 @@
                 }
                 function dragMouseDownHeader(e) {
                     e = e || window.event;
-                    e.preventDefault();
+                    
                     if (!(e.target.parentElement.id.search(/header/i) > -1 || e.target.id.search(/header/i) > -1 || e.target.parentElement.parentElement.id.search(/header/i) > -1 )) {
                         return;
+                        //e.preventDefault();
                     }
                     pos3 = e.clientX;
                     pos4 = e.clientY;
@@ -67,7 +68,7 @@
                 }
                 function elementDrag(e) {
                     e = e || window.event;
-                    e.preventDefault();
+                    //e.preventDefault();
                     // calculate the new cursor position:
                     var newPosX = e.clientX;
                     var newPosY = e.clientY;
